@@ -23,6 +23,9 @@ For Each sld In ActivePresentation.Slides
   Set shp = sld.Shapes(sld.Shapes.Count)
   shp.AnimationSettings.PlaySettings.HideWhileNotPlaying = msoTrue
   shp.AnimationSettings.PlaySettings.PlayOnEntry = True
+  ' 设置音频对象的位置
+  shp.Top = 0  ' 设置垂直位置为 0 磅
+  shp.Left = -70 ' 设置为负数便于导出ppt时不显示音频对象
 
 
   ' 设置时长

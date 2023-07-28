@@ -6,7 +6,8 @@
 ## 2. 使用方法
 
 ### 2.0. 环境
-python3
+- python3
+- ffmpeg (可使用 `brew install ffmpeg` 安装)
 
 ### 2.1. 安装依赖
 
