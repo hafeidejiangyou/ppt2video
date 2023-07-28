@@ -19,7 +19,14 @@ pip install -r requirements.txt
 
 1. asserts文件夹中有一个ppt_text.md文件，这个文件是用来存放ppt的讲稿的，ppt2video.pptx是原始文件
 
-2. 运行python generate.py，会在当前目录下生成一个很多Mp3文件和一个time.txt文件
+2. 运行如下命令，会在当前目录下生成一个很多Mp3文件和一个time.txt文件
+```shell
+python generate.py
+```
+或者
+```shell
+python3 generate.py --input assets/ppt_text.md --output .
+```
 
 3. 打开ppt2video.pptx，Mac下按option + F11 按键打开Visual Basic编辑器
 

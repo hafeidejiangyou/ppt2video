@@ -1,3 +1,4 @@
+import argparse
 import os
 
 from get_times import natural_sort_key, parse_mp3_files
@@ -20,7 +21,7 @@ after = """
 """
 
 
-def split_and_save(input_file):
+def split_and_save(input_file, output_path):
     # 读取输入文件
     with open(input_file, 'r') as f:
         content = f.read()
@@ -30,7 +31,7 @@ def split_and_save(input_file):
 
     # 将分割后的每一块内容写入以顺序命名的文件
     for i, block in enumerate(blocks, start=1):
-        output_file = f"p_{i}.xml"
+        output_file = f"{output_path}/p_{i}.xml"
         with open(output_file, 'w') as f:
             f.write(before_xiao_xiao)
             f.write(block)
@@ -42,15 +43,25 @@ def split_and_save(input_file):
     print("文件已成功分割并保存！")
 
 
+def parseArgs():
+    parser = argparse.ArgumentParser(description='text2video')
+    parser.add_argument('--input', dest='input', help='文稿路径', type=str, required=False)
+    parser.add_argument('--output', dest='output', help='保存mp3文件的路径', type=str, required=False)
+    args = parser.parse_args()
+    return args
+
+
 if __name__ == '__main__':
-    text_directory = '.'
+    args = parseArgs()
+    text_path = args.input if args.input else 'assets/ppt_text.md'
+    output_path = args.output if args.output else '.'  # 保存mp3文件的路径
 
     # 1. 分割文本
-    split_and_save('assets/ppt_text.md')
+    split_and_save(text_path, output_path)
 
     # 2. 获取mp3,这里使用tts脚本，也可以使用软件
     file_list = sorted(
-        [file_name for file_name in os.listdir(text_directory) if file_name.startswith("p_")],
+        [file_name for file_name in os.listdir(output_path) if file_name.startswith("p_")],
         key=natural_sort_key
     )
     for file_name in file_list:
