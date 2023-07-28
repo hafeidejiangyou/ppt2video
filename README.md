@@ -25,3 +25,7 @@ pip install -r requirements.txt
 4. 新建一个模块，将项目中insertVideos.pptm 的内容复制到模块中运行，运行时会提示赋予读取权限，选赋予
 
 5. 运行后试试放映PPT吧，我们就可以直接通过PPT导出MP4视频了
+
+<video src="assets/ppt2video_completed.mp4" controls>
+  你的浏览器不支持 <code>video</code> 标签。
+</video>
