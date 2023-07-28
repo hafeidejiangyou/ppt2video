@@ -123,7 +123,7 @@ def get_SSML(path):
 def get_one_voice(input_path, output_path):
     SSML_text = get_SSML(input_path)
     asyncio.get_event_loop().run_until_complete(mainSeq(SSML_text, output_path))
-    print(input_path + 'convert completed.')
+    print(input_path + ' convert completed.')
 
 
 if __name__ == "__main__":

@@ -1,6 +1,10 @@
 
 Sub InsertAudioAndSetSlideTime()
 
+' 遍历文件夹中的文件，为了获取权限
+Dim fileName As String
+fileName0 = Dir(ActivePresentation.Path & "*.mp3")
+
 ' 使用VBA读取文本文件
 Dim textLines() As String, myFile As Integer
 Dim timeFilePath As String
