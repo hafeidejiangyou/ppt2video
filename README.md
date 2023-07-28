@@ -22,6 +22,6 @@ pip install -r requirements.txt
 
 3. 打开ppt2video.pptx，Mac下按option + F11 按键打开Visual Basic编辑器
 
-4. 将项目中insertVideos.pptm 的内容复制到模块中运行，运行时会提示赋予读取权限，选赋予
+4. 新建一个模块，将项目中insertVideos.pptm 的内容复制到模块中运行，运行时会提示赋予读取权限，选赋予
 
 5. 运行后试试放映PPT吧，我们就可以直接通过PPT导出MP4视频了
