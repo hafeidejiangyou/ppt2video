@@ -1,0 +1,42 @@
+
+Sub InsertAudioAndSetSlideTime()
+
+' 使用VBA读取文本文件
+Dim textLines() As String, myFile As Integer
+Dim timeFilePath As String
+myFile = FreeFile()
+timeFilePath = ActivePresentation.Path & "/../times.txt"
+Open timeFilePath For Input As myFile
+textLines = Split(Input$(LOF(myFile), myFile), vbLf)
+Close myFile
+
+
+' 插入音频
+Dim sld As Slide
+Dim audioFile As String
+For Each sld In ActivePresentation.Slides
+
+  audioFile = ActivePresentation.Path & "/../video_" & sld.SlideNumber & ".mp3"
+  sld.Shapes.AddMediaObject2 audioFile, msoFalse, msoTrue
+
+  Dim shp As Shape
+  Set shp = sld.Shapes(sld.Shapes.Count)
+  shp.AnimationSettings.PlaySettings.HideWhileNotPlaying = msoTrue
+  shp.AnimationSettings.PlaySettings.PlayOnEntry = True
+
+
+  ' 设置时长
+  If IsNumeric(textLines(sld.SlideIndex - 1)) Then
+    sld.SlideShowTransition.AdvanceTime = CLng(textLines(sld.SlideIndex - 1))
+  Else
+    MsgBox "行号" & sld.SlideIndex & "包含非数字"
+  End If
+
+   ' 设置切换类型为自动换片
+   sld.SlideShowTransition.EntryEffect = ppEffectCut
+   sld.SlideShowTransition.AdvanceOnTime = msoTrue
+
+
+Next sld
+
+End Sub
