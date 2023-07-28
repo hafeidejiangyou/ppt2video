@@ -22,9 +22,8 @@ pip install -r requirements.txt
 2. 运行如下命令，会在当前目录下生成一个很多Mp3文件和一个time.txt文件
 ```shell
 python generate.py
-```
-或者
-```shell
+
+# 或者
 python3 generate.py --input assets/ppt_text.md --output .
 ```
 
