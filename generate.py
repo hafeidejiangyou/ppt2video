@@ -2,7 +2,13 @@ import argparse
 import os
 
 from get_times import natural_sort_key, parse_mp3_files
-from tts import get_one_voice
+from tts import get_one_voice, get_one_voice_with_ssml
+
+before_yun_professional = """<speak version="1.0" xmlns="http://www.w3.org/2001/10/synthesis"
+       xmlns:mstts="https://www.w3.org/2001/mstts" xml:lang="zh-CN">
+    <voice name="zh-CN-YunyangNeural">
+        <mstts:express-as style="narration-professional">
+"""
 
 before_yun = """<speak xmlns="http://www.w3.org/2001/10/synthesis" xmlns:mstts="http://www.w3.org/2001/mstts" xmlns:emo="http://www.w3.org/2009/10/emotionml" version="1.0" xml:lang="en-US">
     <voice name="zh-CN-YunyangNeural">
@@ -20,6 +26,12 @@ after = """
 </speak>
 """
 
+after_yun_professional = """
+        </mstts:express-as>
+    </voice>
+</speak>
+"""
+
 
 def split_and_save(input_file, output_path):
     # 读取输入文件
@@ -33,9 +45,9 @@ def split_and_save(input_file, output_path):
     for i, block in enumerate(blocks, start=1):
         output_file = f"{output_path}/p_{i}.xml"
         with open(output_file, 'w') as f:
-            f.write(before_xiao_xiao)
+            f.write(before_yun_professional)
             f.write(block)
-            f.write(after)
+            f.write(after_yun_professional)
         # output_file = f"p_{i}.txt"
         # with open(output_file, 'w') as f:
         #     f.write(block)
@@ -65,8 +77,8 @@ if __name__ == '__main__':
         key=natural_sort_key
     )
     for file_name in file_list:
-        output_name = file_name.replace('.xml', '').replace('p_', 'video_')
-        get_one_voice(file_name, output_name)
+        output_name = file_name.replace('.xml', '.wav').replace('p_', 'video_')
+        get_one_voice_with_ssml(file_name, output_name)
 
     # 3. 获取mp3时间生成time.txt
     mp3_directory = '.'

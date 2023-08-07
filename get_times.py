@@ -1,3 +1,5 @@
+import math
+
 from pydub import AudioSegment
 import os
 import re
@@ -14,6 +16,15 @@ def get_audio_duration(file_path):
     return duration
 
 
+def round_up_and_check_decimal(number):
+    rounded_number = math.ceil(number)
+    decimal_part = rounded_number - number
+
+    if decimal_part < 0.2:
+        rounded_number += 1
+    return rounded_number
+
+
 def parse_mp3_files(directory):
     file_list = sorted(
         [file_name for file_name in os.listdir(directory) if file_name.startswith("video_")],
@@ -24,8 +35,8 @@ def parse_mp3_files(directory):
         for file_name in file_list:
             file_path = os.path.join(directory, file_name)
             duration = get_audio_duration(file_path)
-            duration += 0.5  # 将音频时长增加 0.5 秒
-            duration_str = "{:.2f}".format(duration)  # 格式化为保留两位小数的字符串
+            slide_time = round_up_and_check_decimal(duration)
+            duration_str = "{:.0f}".format(slide_time)
             f.write(duration_str + '\n')
 
 

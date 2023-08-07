@@ -2,14 +2,17 @@
 Sub InsertAudioAndSetSlideTime()
 
 ' 遍历文件夹中的文件，为了获取权限
-Dim fileName As String
+Dim fileName0 As String
 fileName0 = Dir(ActivePresentation.Path & "*.mp3")
+
+Dim baseFilePath As String
+baseFilePath = "/Users/june/Work/ppt2video"
 
 ' 使用VBA读取文本文件
 Dim textLines() As String, myFile As Integer
 Dim timeFilePath As String
 myFile = FreeFile()
-timeFilePath = ActivePresentation.Path & "/../times.txt"
+timeFilePath = baseFilePath & "/times.txt"
 Open timeFilePath For Input As myFile
 textLines = Split(Input$(LOF(myFile), myFile), vbLf)
 Close myFile
@@ -20,7 +23,7 @@ Dim sld As Slide
 Dim audioFile As String
 For Each sld In ActivePresentation.Slides
 
-  audioFile = ActivePresentation.Path & "/../video_" & sld.SlideNumber & ".mp3"
+  audioFile = baseFilePath & "/video_" & sld.SlideNumber & ".wav"
   sld.Shapes.AddMediaObject2 audioFile, msoFalse, msoTrue
 
   Dim shp As Shape

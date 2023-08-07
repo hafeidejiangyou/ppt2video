@@ -12,6 +12,8 @@ import re
 import uuid
 import argparse
 
+from ms_call import use_ssml_once
+
 '''命令行参数解析'''
 
 
@@ -123,6 +125,11 @@ def get_SSML(path):
 def get_one_voice(input_path, output_path):
     SSML_text = get_SSML(input_path)
     asyncio.get_event_loop().run_until_complete(mainSeq(SSML_text, output_path))
+    print(input_path + ' convert completed.')
+
+
+def get_one_voice_with_ssml(input_path, output_path):
+    use_ssml_once(input_path, output_path)
     print(input_path + ' convert completed.')
 
 
