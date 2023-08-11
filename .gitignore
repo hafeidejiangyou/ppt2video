@@ -10,5 +10,7 @@ venv
 __pycache__
 
 /times.txt
+*/times.txt
 
 video*
+/*_files/
