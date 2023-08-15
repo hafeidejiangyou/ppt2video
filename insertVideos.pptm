@@ -5,6 +5,7 @@ Sub InsertAudioAndSetSlideTime()
 Dim fileName0 As String
 fileName0 = Dir(ActivePresentation.Path & "*.mp3")
 
+' 这替换为你的音频文件夹路径
 Dim baseFilePath As String
 baseFilePath = "/Users/june/Work/ppt2video"
 
