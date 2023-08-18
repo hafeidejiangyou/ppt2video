@@ -33,6 +33,7 @@ python3 generate.py --input assets/ppt_text.md --output .
 
 5. 运行后试试放映PPT吧，我们就可以直接通过PPT导出MP4视频了
 
-<video src="assets/ppt2video_completed.mp4" controls>
-  你的浏览器不支持 <code>video</code> 标签。
-</video>
+## 3. Demo
+
+https://github.com/hafeidejiangyou/ppt2video/assets/20509019/1b7884a8-6ee8-4d38-9145-379f4b4add84
+
